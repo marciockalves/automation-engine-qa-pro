@@ -1,0 +1,21 @@
+import pytest
+from pytest_bdd import scenarios, given, when, then
+from app.infra.execute_mapper import ExecuteMapper
+
+scenarios("{{ feature_path }}")
+
+@pytest.fixture
+def execution():
+    return ExecuteMapper()
+
+{% for step in steps %}
+@{{ step.type }}("{{ step.description }}")
+def {{ step.function_name }}(page, execution):
+    {% if step.execution %}
+    excecution.run(page, "{{ step.description }}")
+    {% else %}
+    pass
+    {% endif %}
+    {% if step.screenshot%}
+    page.screenshot(path="evidences/{{ step.funciton_name}}.png")
+{% endfor %}

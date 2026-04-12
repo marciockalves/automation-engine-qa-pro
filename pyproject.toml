@@ -1,0 +1,15 @@
+[project]
+name = "automation-engine-qa-pro"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jinja2>=3.1.6",
+    "pydantic>=2.12.5",
+    "pyside6>=6.11.0",
+    "pytest>=9.0.3",
+    "pytest-bdd>=8.1.0",
+    "pytest-playwright>=0.7.2",
+    "requests>=2.33.1",
+]

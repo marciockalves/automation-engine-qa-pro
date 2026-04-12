@@ -1,0 +1,16 @@
+services:
+  playwright:
+    image: mcr.microsoft.com/playwright/python:v1.49.0-jammy # Versão estável e compatível
+    container_name: playwright_engine
+    network_mode: "host"
+    volumes:
+      - .:/app
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - _X11_NO_MITSHM=1
+    working_dir: /app
+    ipc: host
+    stdin_open: true
+    tty: true
