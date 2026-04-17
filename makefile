@@ -1,15 +1,17 @@
 # Variáveis
-DOCKER_COMPOSE = docker compose
+# DOCKER_COMPOSE = docker compose
+DOCKER_COMPOSE = pdman-compose
 CONTAINER_NAME = playwright_engine
-MAIN_APP = app/ui/main_window.py
-
+MAIN_APP = main.py
+PYTHONPATH_VAR = PYTHONPATH=.
 .PHONY: setup up down shell test-bridge xhost run clean
 
 # --- Configuração Inicial ---
 
-setup: ## Instala as dependências locais via uv
+setup: ## Instala dependências e configura o projeto como pacote editável
 	uv sync
-	@echo "✅ Ambiente local sincronizado com uv."
+	uv pip install -e .
+	@echo "✅ Projeto instalado em modo editável. Imports de 'app' liberados."
 
 xhost: ## Permite que o Docker acesse o servidor gráfico do Fedora (X11/Wayland)
 	xhost +local:docker
